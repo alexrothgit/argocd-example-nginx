@@ -1,0 +1,24 @@
+apiversion: argoproj.io/v1apha1
+kind: application
+metdata:
+  name: myargo-example-nginx
+  namespace: argocd
+spec:
+  project: default
+  
+  source: 
+    repoURL: https://github.com/alexrothgit/argocd-example-nginx.git
+    targetrevision: HEAD
+    path: dev
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: myapp
+
+syncpolicy:
+  snyoptions:
+  - CreateNamespace=true 
+
+  automated:
+    selfHeal: true
+    prune: true  
