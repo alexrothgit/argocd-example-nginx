@@ -1,6 +1,6 @@
-apiversion: argoproj.io/v1apha1
-kind: application
-metdata:
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: myargo-example-nginx
   namespace: argocd
 spec:
@@ -8,17 +8,17 @@ spec:
   
   source: 
     repoURL: https://github.com/alexrothgit/argocd-example-nginx.git
-    targetrevision: HEAD
+    targetRevision: HEAD
     path: dev
 
   destination:
     server: https://kubernetes.default.svc
     namespace: myapp
 
-syncpolicy:
-  snyoptions:
-  - CreateNamespace=true 
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true 
 
-  automated:
-    selfHeal: true
-    prune: true  
+    automated:
+      selfHeal: true
+      prune: true  
